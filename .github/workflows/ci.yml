@@ -7,35 +7,111 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  lint:
+    name: Code Quality
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
     - name: Install uv
-      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+      uses: astral-sh/setup-uv@v4
+      with:
+        enable-cache: true
+
+    - name: Install dependencies
+      run: uv sync
+
+    - name: Check code style with ruff
+      run: |
+        uv pip install ruff
+        uv run ruff check app/ main.py
+
+  test:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.14'
+        python-version: '3.12'
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        enable-cache: true
 
     - name: Install dependencies
-      run: |
-        export PATH="$HOME/.cargo/bin:$PATH"
-        uv pip install -e .
+      run: uv sync
 
-    - name: Run tests
+    - name: Start server
       run: |
-        export PATH="$HOME/.cargo/bin:$PATH"
         uv run python main.py &
-        sleep 5
-        ./test.sh
+        SERVER_PID=$!
+        echo "SERVER_PID=$SERVER_PID" >> $GITHUB_ENV
+
+        # Wait for server to be ready (max 30 seconds)
+        for i in {1..30}; do
+          if curl -s http://localhost:8000/api/health > /dev/null 2>&1; then
+            echo "Server is ready!"
+            break
+          fi
+          echo "Waiting for server... ($i/30)"
+          sleep 1
+        done
+
+        # Verify server is actually running
+        if ! curl -s http://localhost:8000/api/health > /dev/null 2>&1; then
+          echo "Server failed to start"
+          exit 1
+        fi
+
+    - name: Run integration tests
+      run: ./scripts/test.sh
+
+    - name: Stop server
+      if: always()
+      run: |
+        if [ ! -z "$SERVER_PID" ]; then
+          kill $SERVER_PID || true
+        fi
         pkill -f "python main.py" || true
 
-    - name: Check code style
-      run: |
-        export PATH="$HOME/.cargo/bin:$PATH"
-        uv pip install ruff
-        uv run ruff check app/ main.py
+  # Optional: Add a matrix test for multiple Python versions
+  # test-matrix:
+  #   name: Test Python ${{ matrix.python-version }}
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       python-version: ['3.11', '3.12', '3.13']
+  #
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #
+  #   - name: Set up Python ${{ matrix.python-version }}
+  #     uses: actions/setup-python@v5
+  #     with:
+  #       python-version: ${{ matrix.python-version }}
+  #
+  #   - name: Install uv
+  #     uses: astral-sh/setup-uv@v4
+  #     with:
+  #       enable-cache: true
+  #
+  #   - name: Install dependencies
+  #     run: uv sync
+  #
+  #   - name: Run basic tests
+  #     run: |
+  #       uv run python main.py &
+  #       sleep 5
+  #       curl http://localhost:8000/api/health
+  #       pkill -f "python main.py" || true
