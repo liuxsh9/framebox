@@ -53,7 +53,7 @@ cp .env.example .env
 
 ```bash
 # Start the server
-./start.sh
+./scripts/start.sh
 
 # Or manually
 uv run python main.py
@@ -157,12 +157,15 @@ framebox/
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
+├── scripts/               # Utility scripts
+│   ├── start.sh          # Quick start script
+│   └── test.sh           # Test suite
+├── docs/                  # Documentation
+│   └── TESTING.md        # Testing guide
 ├── data/                  # Storage (auto-created)
-│   ├── framebox.db        # SQLite database
-│   └── projects/          # Project files
+│   ├── framebox.db       # SQLite database
+│   └── projects/         # Project files
 ├── main.py               # Entry point
-├── start.sh              # Quick start script
-├── test.sh               # Test suite
 ├── ecosystem.config.js   # PM2 configuration
 └── pyproject.toml        # Dependencies
 ```
@@ -210,7 +213,7 @@ Run the automated test suite:
 uv run python main.py &
 
 # Run tests
-./test.sh
+./scripts/test.sh
 
 # Stop server
 pkill -f "uv run python"
@@ -224,7 +227,7 @@ The test suite covers:
 - ✅ Security validation (path traversal, file size)
 - ✅ Dual identifier resolution
 
-See [TESTING.md](TESTING.md) for detailed testing guide.
+See [docs/TESTING.md](docs/TESTING.md) for detailed testing guide.
 
 ## 📚 API Reference
 

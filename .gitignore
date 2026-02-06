@@ -30,11 +30,6 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Project-specific
-.claude/
-openspec/
-uv.lock
-
 # Temporary files
 *.tmp
 .pytest_cache/
