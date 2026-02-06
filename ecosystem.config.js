@@ -6,7 +6,7 @@ module.exports = {
     interpreter: 'none',
     cwd: './',
     env: {
-      PORT: process.env.PORT || 8001,
+      PORT: process.env.PORT || 8000,
       HOST: process.env.HOST || '0.0.0.0',
       DATA_DIR: process.env.DATA_DIR || './data'
     },

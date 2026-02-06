@@ -40,10 +40,10 @@ nano .env
 uv run python main.py
 
 # 或者使用 uvicorn
-uv run uvicorn main:app --host 0.0.0.0 --port 8001
+uv run uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 
-服务器将在 `http://localhost:8001` 启动（默认端口可在 .env 中修改）
+服务器将在 `http://localhost:8000` 启动（默认端口可在 .env 中修改）
 
 ### 方式 2: 使用 pm2（生产模式）
 
@@ -110,14 +110,14 @@ pkill -f "uv run python main.py"
 ### 1. 测试健康检查
 
 ```bash
-curl http://localhost:8001/api/health
+curl http://localhost:8000/api/health
 # 预期: {"status":"ok","uptime":123.45}
 ```
 
 ### 2. 创建项目
 
 ```bash
-curl -X POST http://localhost:8001/api/projects \
+curl -X POST http://localhost:8000/api/projects \
   -H "Content-Type: application/json" \
   -d '{"name": "my-test-project", "entry_file": "index.html"}'
 
@@ -174,7 +174,7 @@ EOF
 ```bash
 PROJECT_ID="k3x9p2"  # 替换为实际的项目 ID
 
-curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
+curl -X POST http://localhost:8000/api/projects/$PROJECT_ID/files \
   -F "files=@/tmp/test-project/index.html" \
   -F "files=@/tmp/test-project/style.css" \
   -F "files=@/tmp/test-project/data.json"
@@ -184,14 +184,14 @@ curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
 
 在浏览器中打开：
 
-- 通过 ID: `http://localhost:8001/view/k3x9p2/`
-- 通过名称: `http://localhost:8001/view/my-test-project/`
+- 通过 ID: `http://localhost:8000/view/k3x9p2/`
+- 通过名称: `http://localhost:8000/view/my-test-project/`
 
 你应该看到渲染后的 HTML 页面，包含样式和动态加载的数据。
 
 ### 5. 测试 Web UI
 
-在浏览器中打开 `http://localhost:8001/`
+在浏览器中打开 `http://localhost:8000/`
 
 功能测试：
 - ✓ 查看项目列表
@@ -211,11 +211,11 @@ curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
 
 这是一个嵌入的图表:
 
-<iframe src="http://localhost:8001/view/k3x9p2/" width="800" height="600" frameborder="0"></iframe>
+<iframe src="http://localhost:8000/view/k3x9p2/" width="800" height="600" frameborder="0"></iframe>
 
 或者使用名称:
 
-<iframe src="http://localhost:8001/view/my-test-project/" width="800" height="600" frameborder="0"></iframe>
+<iframe src="http://localhost:8000/view/my-test-project/" width="800" height="600" frameborder="0"></iframe>
 ```
 
 使用 Markdown 预览工具查看效果。
@@ -224,8 +224,8 @@ curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
 
 FastAPI 自动生成的 API 文档：
 
-- Swagger UI: `http://localhost:8001/docs`
-- ReDoc: `http://localhost:8001/redoc`
+- Swagger UI: `http://localhost:8000/docs`
+- ReDoc: `http://localhost:8000/redoc`
 
 可以在这里交互式测试所有 API 端点。
 
@@ -275,8 +275,8 @@ pm2 monit
 ### 1. 确认服务器绑定到 0.0.0.0
 
 ```bash
-netstat -an | grep 8001
-# 应该看到: *.8001 或 0.0.0.0:8001
+netstat -an | grep 8000
+# 应该看到: *.8000 或 0.0.0.0:8000
 ```
 
 ### 2. 获取本机 IP
@@ -294,7 +294,7 @@ hostname -I
 在同一局域网的其他设备上:
 
 ```
-http://192.168.x.x:8001/
+http://192.168.x.x:8000/
 ```
 
 替换 `192.168.x.x` 为你的实际 IP 地址。
@@ -309,10 +309,10 @@ http://192.168.x.x:8001/
 # Linux: apt-get install apache2-utils
 
 # 测试健康检查端点
-ab -n 1000 -c 10 http://localhost:8001/api/health
+ab -n 1000 -c 10 http://localhost:8000/api/health
 
 # 测试静态文件服务
-ab -n 1000 -c 10 http://localhost:8001/view/k3x9p2/
+ab -n 1000 -c 10 http://localhost:8000/view/k3x9p2/
 ```
 
 ### 大文件上传测试
@@ -322,7 +322,7 @@ ab -n 1000 -c 10 http://localhost:8001/view/k3x9p2/
 dd if=/dev/zero of=/tmp/large.html bs=1M count=45
 
 # 上传测试
-curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
+curl -X POST http://localhost:8000/api/projects/$PROJECT_ID/files \
   -F "files=@/tmp/large.html" \
   -w "Time: %{time_total}s\n"
 ```
@@ -333,7 +333,7 @@ curl -X POST http://localhost:8001/api/projects/$PROJECT_ID/files \
 
 ```bash
 # 查看占用端口的进程
-lsof -i :8001
+lsof -i :8000
 
 # 修改端口
 echo "PORT=8002" >> .env
@@ -361,7 +361,7 @@ chmod -R 755 data/
 
 ```bash
 # 检查响应头
-curl -v http://localhost:8001/view/k3x9p2/ 2>&1 | grep -i "access-control"
+curl -v http://localhost:8000/view/k3x9p2/ 2>&1 | grep -i "access-control"
 
 # 应该看到:
 # access-control-allow-origin: *

@@ -22,8 +22,8 @@ mkdir -p data/projects logs
 
 # 启动服务器
 echo "✓ Starting server..."
-echo "  Access Web UI at: http://localhost:8001"
-echo "  API Documentation: http://localhost:8001/docs"
+echo "  Access Web UI at: http://localhost:8000"
+echo "  API Documentation: http://localhost:8000/docs"
 echo ""
 
 uv run python main.py

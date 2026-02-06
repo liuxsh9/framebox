@@ -59,17 +59,17 @@ cp .env.example .env
 uv run python main.py
 ```
 
-Server will be available at `http://localhost:8001`
+Server will be available at `http://localhost:8000`
 
-- **Web UI**: http://localhost:8001
-- **API Docs**: http://localhost:8001/docs
-- **Health Check**: http://localhost:8001/api/health
+- **Web UI**: http://localhost:8000
+- **API Docs**: http://localhost:8000/docs
+- **Health Check**: http://localhost:8000/api/health
 
 ## 📖 Usage
 
 ### Web Interface
 
-1. Open http://localhost:8001 in your browser
+1. Open http://localhost:8000 in your browser
 2. Click **"Create Project"** to create a new HTML project
 3. **Drag and drop** files or use the upload button
 4. Click **"Preview"** to see your content
@@ -80,7 +80,7 @@ Server will be available at `http://localhost:8001`
 #### Create a Project
 
 ```bash
-curl -X POST http://localhost:8001/api/projects \
+curl -X POST http://localhost:8000/api/projects \
   -H "Content-Type: application/json" \
   -d '{"name": "my-chart", "entry_file": "index.html"}'
 
@@ -97,7 +97,7 @@ curl -X POST http://localhost:8001/api/projects \
 #### Upload Files
 
 ```bash
-curl -X POST http://localhost:8001/api/projects/k3x9p2/files \
+curl -X POST http://localhost:8000/api/projects/k3x9p2/files \
   -F "files=@index.html" \
   -F "files=@data.json" \
   -F "files=@assets/style.css;filename=assets/style.css"
@@ -107,13 +107,13 @@ curl -X POST http://localhost:8001/api/projects/k3x9p2/files \
 
 ```markdown
 <!-- By ID -->
-<iframe src="http://your-server:8001/view/k3x9p2/" width="100%" height="600"></iframe>
+<iframe src="http://your-server:8000/view/k3x9p2/" width="100%" height="600"></iframe>
 
 <!-- By name -->
-<iframe src="http://your-server:8001/view/my-chart/" width="100%" height="600"></iframe>
+<iframe src="http://your-server:8000/view/my-chart/" width="100%" height="600"></iframe>
 
 <!-- With custom dimensions -->
-<iframe src="http://your-server:8001/view/my-chart/" width="800" height="400"></iframe>
+<iframe src="http://your-server:8000/view/my-chart/" width="800" height="400"></iframe>
 ```
 
 ### Dynamic Asset Loading
@@ -202,7 +202,7 @@ docker-compose up -d
 Environment variables (`.env` file):
 
 ```bash
-PORT=8001          # Server port
+PORT=8000          # Server port
 HOST=0.0.0.0       # Bind address (0.0.0.0 for LAN access)
 DATA_DIR=./data    # Data storage directory
 ```

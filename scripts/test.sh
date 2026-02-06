@@ -5,7 +5,7 @@
 
 set -e
 
-API_BASE="${API_BASE:-http://localhost:8001}"
+API_BASE="${API_BASE:-http://localhost:8000}"
 PROJECT_NAME="test-project-$(date +%s)"
 PROJECT_ID=""
 
