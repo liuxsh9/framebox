@@ -36,7 +36,7 @@ A lightweight, self-hosted service for hosting HTML content embeddable via ifram
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/framebox.git
+git clone https://github.com/liuxsh9/framebox.git
 cd framebox
 
 # Install uv (if not already installed)
@@ -284,9 +284,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Support
 
-- 🐛 [Issue Tracker](https://github.com/yourusername/framebox/issues)
-- 💬 [Discussions](https://github.com/yourusername/framebox/discussions)
-- 📖 [Documentation](https://github.com/yourusername/framebox/wiki)
+- 🐛 [Issue Tracker](https://github.com/liuxsh9/framebox/issues)
+- 💬 [Discussions](https://github.com/liuxsh9/framebox/discussions)
+- 📖 [Documentation](https://github.com/liuxsh9/framebox/wiki)
 
 ---
 
