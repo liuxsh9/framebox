@@ -293,11 +293,7 @@ function showEmbedCode(projectId, projectName) {
     const modal = document.getElementById('embedModal');
     const code = document.getElementById('embedCode');
 
-    const embedHtml = `<!-- Embed by ID -->
-<iframe src="${API_BASE}/view/${projectId}/" width="800" height="600" frameborder="0"></iframe>
-
-<!-- Embed by name -->
-<iframe src="${API_BASE}/view/${projectName}/" width="800" height="600" frameborder="0"></iframe>`;
+    const embedHtml = `<iframe src="${API_BASE}/view/${projectName}/" width="100%" height="600" frameborder="0"></iframe>`;
 
     code.textContent = embedHtml;
     modal.classList.add('active');

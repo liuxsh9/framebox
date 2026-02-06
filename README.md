@@ -107,10 +107,13 @@ curl -X POST http://localhost:8001/api/projects/k3x9p2/files \
 
 ```markdown
 <!-- By ID -->
-<iframe src="http://your-server:8001/view/k3x9p2/" width="800" height="600"></iframe>
+<iframe src="http://your-server:8001/view/k3x9p2/" width="100%" height="600"></iframe>
 
 <!-- By name -->
-<iframe src="http://your-server:8001/view/my-chart/" width="800" height="600"></iframe>
+<iframe src="http://your-server:8001/view/my-chart/" width="100%" height="600"></iframe>
+
+<!-- With custom dimensions -->
+<iframe src="http://your-server:8001/view/my-chart/" width="800" height="400"></iframe>
 ```
 
 ### Dynamic Asset Loading
