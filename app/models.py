@@ -49,3 +49,11 @@ class HealthResponse(BaseModel):
     """Response model for health check."""
     status: str
     uptime: float
+
+
+class ServerInfoResponse(BaseModel):
+    """Response model for server information."""
+    host: str
+    port: int
+    local_ip: Optional[str] = None
+    suggested_url: Optional[str] = None

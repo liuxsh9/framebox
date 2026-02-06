@@ -11,7 +11,8 @@ import uvicorn
 from app.config import settings
 from app.database import init_database, close_database
 from app.api import projects, files, static
-from app.models import HealthResponse
+from app.models import HealthResponse, ServerInfoResponse
+from app.utils.network import get_local_ip
 
 
 # Track application start time for uptime
@@ -54,6 +55,25 @@ async def health_check():
     return HealthResponse(
         status="ok",
         uptime=time.time() - start_time
+    )
+
+
+# Server info endpoint
+@app.get("/api/server-info", response_model=ServerInfoResponse)
+async def server_info():
+    """Get server information including local IP for embedding."""
+    local_ip = get_local_ip()
+    suggested_url = None
+
+    # If server is listening on 0.0.0.0 and we have a local IP, suggest it
+    if settings.host == "0.0.0.0" and local_ip:
+        suggested_url = f"http://{local_ip}:{settings.port}"
+
+    return ServerInfoResponse(
+        host=settings.host,
+        port=settings.port,
+        local_ip=local_ip,
+        suggested_url=suggested_url
     )
 
 

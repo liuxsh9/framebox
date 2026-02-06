@@ -289,15 +289,32 @@ function closePreview() {
 }
 
 // Embed Code
-function showEmbedCode(projectId, projectName) {
+async function showEmbedCode(projectId, projectName) {
     const modal = document.getElementById('embedModal');
     const code = document.getElementById('embedCode');
     const serverUrl = document.getElementById('currentServerUrl');
 
-    const embedHtml = `<iframe src="${API_BASE}/view/${projectName}/" width="100%" height="600" frameborder="0"></iframe>`;
+    // Get server info to check for suggested URL
+    let embedBaseUrl = API_BASE;
+    try {
+        const response = await fetch(`${API_BASE}/api/server-info`);
+        if (response.ok) {
+            const serverInfo = await response.json();
+            // If user is on localhost but server has a suggested URL, use it
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            if (isLocalhost && serverInfo.suggested_url) {
+                embedBaseUrl = serverInfo.suggested_url;
+            }
+        }
+    } catch (error) {
+        // Fallback to current origin if API fails
+        console.warn('Failed to fetch server info:', error);
+    }
+
+    const embedHtml = `<iframe src="${embedBaseUrl}/view/${projectName}/" width="100%" height="600" frameborder="0"></iframe>`;
 
     code.textContent = embedHtml;
-    serverUrl.textContent = API_BASE;
+    serverUrl.textContent = embedBaseUrl;
     modal.classList.add('active');
 }
 
