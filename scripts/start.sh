@@ -13,17 +13,9 @@ if ! command -v uv &> /dev/null; then
     exit 1
 fi
 
-# 检查虚拟环境
-if [ ! -d ".venv" ]; then
-    echo "📦 Creating virtual environment..."
-    uv venv
-fi
-
-# 检查依赖
-if [ ! -f ".venv/pyvenv.cfg" ]; then
-    echo "📦 Installing dependencies..."
-    uv pip install -e .
-fi
+# 同步依赖（自动创建虚拟环境并安装依赖）
+echo "📦 Syncing dependencies..."
+uv sync
 
 # 创建必要的目录
 mkdir -p data/projects logs

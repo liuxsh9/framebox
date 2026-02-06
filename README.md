@@ -30,7 +30,7 @@ A lightweight, self-hosted service for hosting HTML content embeddable via ifram
 ### Prerequisites
 
 - Python 3.14+
-- [uv](https://github.com/astral-sh/uv) - Fast Python package installer
+- [uv](https://github.com/astral-sh/uv) - Fast Python package and project manager
 
 ### Installation
 
@@ -42,8 +42,8 @@ cd framebox
 # Install uv (if not already installed)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install dependencies
-uv pip install -e .
+# Sync dependencies (auto-creates venv and installs packages)
+uv sync
 
 # Copy environment template
 cp .env.example .env
@@ -209,7 +209,10 @@ DATA_DIR=./data    # Data storage directory
 Run the automated test suite:
 
 ```bash
-# Start server
+# Sync dependencies first (if not done)
+uv sync
+
+# Start server in background
 uv run python main.py &
 
 # Run tests

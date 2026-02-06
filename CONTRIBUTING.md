@@ -16,8 +16,8 @@ Thank you for your interest in contributing to framebox! This document provides 
    # Install uv
    curl -LsSf https://astral.sh/uv/install.sh | sh
 
-   # Install dependencies
-   uv pip install -e .
+   # Sync dependencies (auto-creates venv and installs packages)
+   uv sync
 
    # Copy environment template
    cp .env.example .env
@@ -37,7 +37,7 @@ Before submitting a PR, ensure all tests pass:
 uv run python main.py &
 
 # Run the test suite
-./test.sh
+./scripts/test.sh
 
 # Stop the server
 pkill -f "uv run python"
@@ -121,8 +121,8 @@ We'd love help with:
 
 ## 📧 Questions?
 
-- Open an [Issue](https://github.com/yourusername/framebox/issues) for bugs
-- Start a [Discussion](https://github.com/yourusername/framebox/discussions) for questions
+- Open an [Issue](https://github.com/liuxsh9/framebox/issues) for bugs
+- Start a [Discussion](https://github.com/liuxsh9/framebox/discussions) for questions
 - Check existing issues before creating new ones
 
 ## ⚖️ License
