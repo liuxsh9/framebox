@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.14'
+
+    - name: Install dependencies
+      run: |
+        export PATH="$HOME/.cargo/bin:$PATH"
+        uv pip install -e .
+
+    - name: Run tests
+      run: |
+        export PATH="$HOME/.cargo/bin:$PATH"
+        uv run python main.py &
+        sleep 5
+        ./test.sh
+        pkill -f "python main.py" || true
+
+    - name: Check code style
+      run: |
+        export PATH="$HOME/.cargo/bin:$PATH"
+        uv pip install ruff
+        uv run ruff check app/ main.py

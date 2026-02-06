@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe-server - Project Management</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>iframe-server</h1>
+            <p>Lightweight iframe hosting service for markdown embeds</p>
+        </header>
+
+        <div class="toolbar">
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search projects..."
+            />
+            <button id="createBtn" class="btn btn-primary">Create Project</button>
+        </div>
+
+        <div id="projectList" class="project-grid">
+            <!-- Projects will be dynamically loaded here -->
+        </div>
+
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <h2>No projects yet</h2>
+            <p>Create your first project to get started</p>
+            <button class="btn btn-primary" onclick="document.getElementById('createBtn').click()">
+                Create Project
+            </button>
+        </div>
+
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <!-- Create Project Modal -->
+    <div id="createModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Project</h2>
+                <button class="close-btn" onclick="closeCreateModal()">&times;</button>
+            </div>
+            <form id="createForm">
+                <div class="form-group">
+                    <label for="projectName">Project Name *</label>
+                    <input
+                        type="text"
+                        id="projectName"
+                        name="name"
+                        required
+                        placeholder="my-awesome-chart"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="entryFile">Entry File</label>
+                    <input
+                        type="text"
+                        id="entryFile"
+                        name="entry_file"
+                        value="index.html"
+                        placeholder="index.html"
+                    />
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeCreateModal()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Preview Modal -->
+    <div id="previewModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="previewTitle">Preview</h2>
+                <button class="close-btn" onclick="closePreview()">&times;</button>
+            </div>
+            <div class="preview-container">
+                <iframe id="previewFrame" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Embed Code Modal -->
+    <div id="embedModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Embed Code</h2>
+                <button class="close-btn" onclick="closeEmbedModal()">&times;</button>
+            </div>
+            <div class="embed-content">
+                <p>Copy this code to embed in your markdown:</p>
+                <div class="code-block">
+                    <pre id="embedCode"></pre>
+                    <button class="btn btn-small" onclick="copyEmbedCode()">Copy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- File Upload Zone -->
+    <div id="uploadZone" class="upload-zone" style="display: none;">
+        <div class="upload-zone-content">
+            <p>Drop files here or click to upload</p>
+            <input type="file" id="fileInput" multiple style="display: none;">
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
