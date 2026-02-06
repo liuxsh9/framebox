@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     @property
     def db_path(self) -> str:
         """Get the database file path."""
-        return f"{self.data_dir}/iframe_server.db"
+        return f"{self.data_dir}/framebox.db"
 
     @property
     def projects_dir(self) -> str:

@@ -1,4 +1,4 @@
-"""Main application entry point for iframe-server."""
+"""Main application entry point for framebox."""
 
 import time
 from contextlib import asynccontextmanager
@@ -30,7 +30,7 @@ async def lifespan(app: FastAPI):
 
 # Create FastAPI application
 app = FastAPI(
-    title="iframe-server",
+    title="framebox",
     description="Lightweight iframe hosting service for markdown embeds",
     version="0.1.0",
     lifespan=lifespan

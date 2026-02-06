@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# iframe-server 启动脚本 (使用 uv)
+# framebox 启动脚本 (使用 uv)
 
 set -e
 
-echo "🚀 Starting iframe-server with uv..."
+echo "🚀 Starting framebox with uv..."
 
 # 检查 uv 是否安装
 if ! command -v uv &> /dev/null; then

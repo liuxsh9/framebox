@@ -1,5 +1,5 @@
 [project]
-name = "iframe-server"
+name = "framebox"
 version = "0.1.0"
 description = "Lightweight iframe hosting service for markdown embeds"
 readme = "README.md"
@@ -21,4 +21,4 @@ build-backend = "setuptools.build_meta"
 packages = ["app", "app.api", "app.utils"]
 
 [project.scripts]
-iframe-server = "main:main"
+framebox = "main:main"

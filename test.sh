@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Test script for iframe-server
+# Test script for framebox
 # Run this after starting the server with: python main.py
 
 set -e
@@ -9,7 +9,7 @@ API_BASE="${API_BASE:-http://localhost:8001}"
 PROJECT_NAME="test-project-$(date +%s)"
 PROJECT_ID=""
 
-echo "=== iframe-server Test Suite ==="
+echo "=== framebox Test Suite ==="
 echo ""
 
 # Color codes
@@ -98,7 +98,7 @@ cat > /tmp/iframe-test/index.html <<EOF
 EOF
 
 cat > /tmp/iframe-test/data.json <<EOF
-{"message": "Hello from iframe-server!"}
+{"message": "Hello from framebox!"}
 EOF
 
 mkdir -p /tmp/iframe-test/assets
@@ -145,7 +145,7 @@ test_result "Serve nested file"
 # 12. Test static serving - JSON file
 echo ""
 echo "12. Testing static serving (JSON file)..."
-curl -s "$API_BASE/view/$PROJECT_ID/data.json" | grep -q "Hello from iframe-server"
+curl -s "$API_BASE/view/$PROJECT_ID/data.json" | grep -q "Hello from framebox"
 test_result "Serve JSON file"
 
 # 13. Test CORS headers

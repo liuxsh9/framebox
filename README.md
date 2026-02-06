@@ -1,4 +1,4 @@
-# iframe-server
+# framebox
 
 [![Python 3.14+](https://img.shields.io/badge/python-3.14+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com/)
@@ -36,8 +36,8 @@ A lightweight, self-hosted service for hosting HTML content embeddable via ifram
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/iframe-server.git
-cd iframe-server
+git clone https://github.com/yourusername/framebox.git
+cd framebox
 
 # Install uv (if not already installed)
 curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -141,7 +141,7 @@ All paths are automatically resolved relative to your project.
 ## 🏗️ Architecture
 
 ```
-iframe-server/
+framebox/
 ├── app/                    # Application code
 │   ├── api/               # API routes
 │   │   ├── projects.py    # Project CRUD
@@ -158,7 +158,7 @@ iframe-server/
 │   ├── style.css
 │   └── app.js
 ├── data/                  # Storage (auto-created)
-│   ├── iframe_server.db   # SQLite database
+│   ├── framebox.db        # SQLite database
 │   └── projects/          # Project files
 ├── main.py               # Entry point
 ├── start.sh              # Quick start script
@@ -284,9 +284,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Support
 
-- 🐛 [Issue Tracker](https://github.com/yourusername/iframe-server/issues)
-- 💬 [Discussions](https://github.com/yourusername/iframe-server/discussions)
-- 📖 [Documentation](https://github.com/yourusername/iframe-server/wiki)
+- 🐛 [Issue Tracker](https://github.com/yourusername/framebox/issues)
+- 💬 [Discussions](https://github.com/yourusername/framebox/discussions)
+- 📖 [Documentation](https://github.com/yourusername/framebox/wiki)
 
 ---
 

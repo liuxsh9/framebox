@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2024-02-06
 
 ### Added
-- Initial release of iframe-server
+- Initial release of framebox
 - REST API for HTML project management (CRUD operations)
 - Dual access mode: by short ID or friendly name
 - Batch file upload with directory structure support
@@ -39,4 +39,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - API documentation via FastAPI auto-generated docs
 - MIT License
 
-[0.1.0]: https://github.com/yourusername/iframe-server/releases/tag/v0.1.0
+[0.1.0]: https://github.com/yourusername/framebox/releases/tag/v0.1.0

@@ -1,14 +1,14 @@
-# Contributing to iframe-server
+# Contributing to framebox
 
-Thank you for your interest in contributing to iframe-server! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to framebox! This document provides guidelines and instructions for contributing.
 
 ## 🚀 Getting Started
 
 1. **Fork the repository**
    ```bash
    # Click the "Fork" button on GitHub
-   git clone https://github.com/yourusername/iframe-server.git
-   cd iframe-server
+   git clone https://github.com/yourusername/framebox.git
+   cd framebox
    ```
 
 2. **Set up development environment**
@@ -87,7 +87,7 @@ We welcome feature requests! Please include:
 ## 📋 Project Structure
 
 ```
-iframe-server/
+framebox/
 ├── app/                 # Core application
 │   ├── api/            # API route handlers
 │   ├── utils/          # Utility functions
@@ -121,8 +121,8 @@ We'd love help with:
 
 ## 📧 Questions?
 
-- Open an [Issue](https://github.com/yourusername/iframe-server/issues) for bugs
-- Start a [Discussion](https://github.com/yourusername/iframe-server/discussions) for questions
+- Open an [Issue](https://github.com/yourusername/framebox/issues) for bugs
+- Start a [Discussion](https://github.com/yourusername/framebox/discussions) for questions
 - Check existing issues before creating new ones
 
 ## ⚖️ License
@@ -131,4 +131,4 @@ By contributing, you agree that your contributions will be licensed under the MI
 
 ---
 
-Thank you for contributing to iframe-server! 🎉
+Thank you for contributing to framebox! 🎉

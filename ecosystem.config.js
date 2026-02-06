@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'iframe-server',
+    name: 'framebox',
     script: 'uv',
     args: 'run python main.py',
     interpreter: 'none',

@@ -1,4 +1,4 @@
-# iframe-server 测试指南
+# framebox 测试指南
 
 ## 环境准备
 
@@ -58,10 +58,10 @@ pm2 start ecosystem.config.js
 pm2 list
 
 # 查看日志
-pm2 logs iframe-server
+pm2 logs framebox
 
 # 停止服务
-pm2 stop iframe-server
+pm2 stop framebox
 ```
 
 ## 自动化测试
@@ -138,7 +138,7 @@ cat > /tmp/test-project/index.html <<'EOF'
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Hello from iframe-server!</h1>
+    <h1>Hello from framebox!</h1>
     <div id="data"></div>
     <script>
         fetch('./data.json')
@@ -164,7 +164,7 @@ EOF
 
 cat > /tmp/test-project/data.json <<'EOF'
 {
-    "message": "Data loaded successfully from iframe-server!"
+    "message": "Data loaded successfully from framebox!"
 }
 EOF
 ```
@@ -242,11 +242,11 @@ pm2 save
 
 ```bash
 # 杀死进程测试自动重启
-pm2 delete iframe-server
+pm2 delete framebox
 pm2 start ecosystem.config.js
 
 # 查看日志确认重启
-pm2 logs iframe-server --lines 50
+pm2 logs framebox --lines 50
 ```
 
 ### 3. 测试开机自启
@@ -373,7 +373,7 @@ curl -v http://localhost:8001/view/k3x9p2/ 2>&1 | grep -i "access-control"
 
 ```bash
 # 停止服务器
-pm2 stop iframe-server
+pm2 stop framebox
 # 或
 pkill -f "uv run python"
 
