@@ -1,8 +1,5 @@
 """File validation utilities."""
 
-import re
-from pathlib import Path
-from typing import Optional
 
 
 MAX_UPLOAD_SIZE = 50 * 1024 * 1024  # 50MB in bytes

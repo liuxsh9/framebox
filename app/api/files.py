@@ -46,13 +46,7 @@ async def upload_files(project_id: str, files: List[UploadFile] = File(...)):
         # Process each file
         for filename, content in file_data:
             # Validate and sanitize filename
-            try:
-                safe_filename = validate_filename(filename)
-            except ValidationError as e:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail=str(e)
-                )
+            safe_filename = validate_filename(filename)
 
             # Create directory structure for nested paths
             file_path = project_dir / safe_filename
@@ -67,10 +61,20 @@ async def upload_files(project_id: str, files: List[UploadFile] = File(...)):
             uploaded_files.append(safe_filename)
 
     except ValidationError as e:
-        raise HTTPException(
-            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
-            detail=str(e)
-        )
+        # Handle validation errors (filename or size)
+        if "exceeds maximum" in str(e):
+            raise HTTPException(
+                status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                detail=str(e)
+            )
+        else:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=str(e)
+            )
+    except HTTPException:
+        # Re-raise HTTP exceptions as-is
+        raise
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
