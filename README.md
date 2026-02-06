@@ -116,6 +116,13 @@ curl -X POST http://localhost:8000/api/projects/k3x9p2/files \
 <iframe src="http://your-server:8000/view/my-chart/" width="800" height="400"></iframe>
 ```
 
+**💡 Tip for LAN/Remote Access:**
+- The Web UI automatically generates embed codes based on your current access URL
+- For localhost-only: Access via `http://localhost:8000`
+- For LAN access: Access via `http://192.168.x.x:8000` (use your server's IP)
+- For public access: Access via your domain name (e.g., `https://framebox.example.com`)
+- The generated embed code will use the same URL, ensuring it works from other machines
+
 ### Dynamic Asset Loading
 
 Your HTML files can reference other assets using relative paths:

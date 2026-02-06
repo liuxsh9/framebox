@@ -292,10 +292,12 @@ function closePreview() {
 function showEmbedCode(projectId, projectName) {
     const modal = document.getElementById('embedModal');
     const code = document.getElementById('embedCode');
+    const serverUrl = document.getElementById('currentServerUrl');
 
     const embedHtml = `<iframe src="${API_BASE}/view/${projectName}/" width="100%" height="600" frameborder="0"></iframe>`;
 
     code.textContent = embedHtml;
+    serverUrl.textContent = API_BASE;
     modal.classList.add('active');
 }
 

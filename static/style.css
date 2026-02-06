@@ -344,6 +344,28 @@ form {
     right: 0.5rem;
 }
 
+.embed-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.embed-info code {
+    background: #e9ecef;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    color: #495057;
+}
+
+.embed-hint {
+    margin-top: 0.5rem;
+    color: #6c757d;
+    font-size: 0.85rem;
+}
+
 /* Upload Zone */
 .upload-zone {
     position: fixed;
